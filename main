@@ -1,0 +1,44 @@
+notas =[5,10,20,50,100]
+montoInicial=1000
+nuevoMonto=0
+opcionMenu= int(input("***Menu***\nPresiona el numero:\n1-.Consultar saldo.\n2-.Retirar.\n3-.Ingresar saldo.\n"))
+
+
+def consultarSaldo():
+    return montoInicial
+    
+def validarEstadoCuenta(montoRetiro):
+    if montoRetiro<=montoInicial:
+       global  nuevoMonto
+       if montoRetiro%5==0:
+           print("")
+       else:
+           print("Lo sentimos solo contamos con los siguientes montos\n5,10,20,50,100")
+           return False
+       nuevoMonto=montoInicial-montoRetiro
+       return True
+    else:
+        print("Tu saldo es insuficiente")
+        return False
+
+def retirarSaldo():
+    montoRetiro=int(input("---Coloque el monto a retirar---\n"))
+    if(validarEstadoCuenta(montoRetiro)):
+        print("Retiro exitoso, su nuevo saldo es de "+ str(nuevoMonto))
+        
+
+def insertarSaldo():
+    montoAgregado=int(input("---Ingrese el monto a guardar---\n"))
+    global  nuevoMonto
+    nuevoMonto=montoInicial+montoAgregado
+    print("Ingreso exitoso, su nuevo saldo es de "+ str(nuevoMonto))
+    
+while opcionMenu<0 or opcionMenu>3:
+    print("Opcion del menu no no valida, intente de nuevo")
+    opcionMenu= int(input("***Menu***\nPresiona el numero:\n1-.Consultar saldo.\n2-.Retirar.\n3-.Ingresar saldo.\n"))     
+if opcionMenu ==1:
+    print("Su saldo es de: "+str(consultarSaldo()))
+elif (opcionMenu ==2):
+    retirarSaldo()
+elif(opcionMenu==3):
+    insertarSaldo()
